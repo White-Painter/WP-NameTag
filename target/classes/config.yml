@@ -1,0 +1,21 @@
+#存储设置
+io:
+  #是：MySQL | 否：SQLLite
+  mysql: false
+  sql:
+    hostname: "127.0.0.1"
+    port: 3306
+    database: "test"
+    username: "root"
+    password: "123456"
+  #数据表设置
+  table:
+    nameTag: "nametags"
+    player: "nametag_player_data"
+#称号相关设置
+nametag:
+  #如果启用，称号将绑定权限：wpnametag.<称号名>
+  permission: true
+  default: "&a萌新"
+  prefix: "&f["
+  suffix: "&f]"

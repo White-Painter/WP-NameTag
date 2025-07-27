@@ -1,8 +1,10 @@
 package org.whitepainter.wpnametag.io.data;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.whitepainter.wpnametag.NameTagManager;
+import org.whitepainter.wpnametag.Setting;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -89,7 +91,7 @@ public class PlayerData {
 
     public String getUsedNameTagFormat(){
         String temporaryNameTag = getTemporaryNameTag();
-        if(temporaryNameTag != null) return temporaryNameTag;
+        if(temporaryNameTag != null) return Setting.nameTagPrefix+temporaryNameTag+Setting.nameTagSuffix;
         NameTag nameTag = getUsedNameTag();
         if(nameTag != null) return nameTag.getFormat();
         return "";
@@ -100,7 +102,11 @@ public class PlayerData {
     }
 
     public void setTemporaryNameTag(String temporaryNameTag) {
-        this.temporaryNameTag = temporaryNameTag;
+        if(temporaryNameTag == null){
+            this.temporaryNameTag = null;
+        }else{
+            this.temporaryNameTag = temporaryNameTag.replace('&', ChatColor.COLOR_CHAR);
+        }
     }
 
     public boolean giveNameTag(String nameTagKey){

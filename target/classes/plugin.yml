@@ -1,0 +1,9 @@
+name: WP-NameTag
+version: '1.0-SNAPSHOT'
+main: org.whitepainter.wpnametag.NameTagMain
+api-version: '1.13'
+commands:
+  nametag:
+    usage: /<command>
+depend: [ ProtocolLib ]
+softdepend: [ PlaceholderAPI ]

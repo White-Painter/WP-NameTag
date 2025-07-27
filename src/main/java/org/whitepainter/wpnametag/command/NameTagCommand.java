@@ -171,11 +171,10 @@ public class NameTagCommand implements CommandExecutor, TabExecutor {
             }else{
                 sender.sendMessage(ChatColor.RED+"参数不足");
             }
-        }else if(length >= 3){
-            String playerName = args[1];
-            String key = args[2];
-            NameTag nameTag = NameTagManager.getNameTag(key);
-            if(nameTag != null){
+        }else if(name.equalsIgnoreCase("reset-temporary")){
+            if(!checkPermission(sender, "nametag."+name, true)) return true;
+            if(length >= 2){
+                String playerName = args[1];
                 Player player = Bukkit.getPlayerExact(playerName);
                 if(player == null){
                     sender.sendMessage(ChatColor.RED+"该玩家处于离线状态");
@@ -186,40 +185,58 @@ public class NameTagCommand implements CommandExecutor, TabExecutor {
                     sender.sendMessage(ChatColor.RED+"获取此玩家的数据失败");
                     return true;
                 }
-                if(name.equalsIgnoreCase("give")){
-                    if(!checkPermission(sender, "nametag."+name, true)) return true;
-                    if(playerData.giveNameTag(key)){
-                        sender.sendMessage("成功给予玩家称号");
-                    }else{
-                        sender.sendMessage(ChatColor.RED+"给予玩家称号失败");
-                    }
-                }else if(name.equalsIgnoreCase("remove")){
-                    if(!checkPermission(sender, "nametag."+name, true)) return true;
-                    if(playerData.removeNameTag(key)){
-                        sender.sendMessage("成功删除玩家称号");
-                    }else{
-                        sender.sendMessage(ChatColor.RED+"删除玩家称号失败");
-                    }
-                }else if(name.equalsIgnoreCase("set")){
-                    if(!checkPermission(sender, "nametag."+name, true)) return true;
-                    if(playerData.setUsedNameTag(key)){
-                        sender.sendMessage("成功设置玩家称号");
-                    }else{
-                        sender.sendMessage(ChatColor.RED+"设置玩家称号失败");
-                    }
-                }else if(name.equalsIgnoreCase("set-temporary")){
-                    if(!checkPermission(sender, "nametag."+name, true)) return true;
-                    playerData.setTemporaryNameTag(key);
-                    sender.sendMessage("成功设置玩家临时称号");
-                }else if(name.equalsIgnoreCase("reset-temporary")){
-                    if(!checkPermission(sender, "nametag."+name, true)) return true;
-                    playerData.setTemporaryNameTag(null);
-                    sender.sendMessage("成功重置玩家临时称号");
-                }else{
-                    sender.sendMessage(ChatColor.RED+"未知的参数");
-                }
+                playerData.setTemporaryNameTag(null);
+                sender.sendMessage("成功重置玩家临时称号");
             }else{
-                sender.sendMessage(ChatColor.RED+"无效的称号");
+                sender.sendMessage(ChatColor.RED+"参数不足");
+            }
+        }else if(length >= 3){
+            String playerName = args[1];
+            Player player = Bukkit.getPlayerExact(playerName);
+            if(player == null){
+                sender.sendMessage(ChatColor.RED+"该玩家处于离线状态");
+                return true;
+            }
+            PlayerData playerData = IOManager.getPlayerData(playerName);
+            if(playerData == null){
+                sender.sendMessage(ChatColor.RED+"获取此玩家的数据失败");
+                return true;
+            }
+            String key = args[2];
+            if(name.equalsIgnoreCase("set-temporary")){
+                if(!checkPermission(sender, "nametag."+name, true)) return true;
+                playerData.setTemporaryNameTag(key);
+                sender.sendMessage("成功设置玩家临时称号");
+            }else{
+                NameTag nameTag = NameTagManager.getNameTag(key);
+                if(nameTag != null){
+                    if(name.equalsIgnoreCase("give")){
+                        if(!checkPermission(sender, "nametag."+name, true)) return true;
+                        if(playerData.giveNameTag(key)){
+                            sender.sendMessage("成功给予玩家称号");
+                        }else{
+                            sender.sendMessage(ChatColor.RED+"给予玩家称号失败");
+                        }
+                    }else if(name.equalsIgnoreCase("remove")){
+                        if(!checkPermission(sender, "nametag."+name, true)) return true;
+                        if(playerData.removeNameTag(key)){
+                            sender.sendMessage("成功删除玩家称号");
+                        }else{
+                            sender.sendMessage(ChatColor.RED+"删除玩家称号失败");
+                        }
+                    }else if(name.equalsIgnoreCase("set")){
+                        if(!checkPermission(sender, "nametag."+name, true)) return true;
+                        if(playerData.setUsedNameTag(key)){
+                            sender.sendMessage("成功设置玩家称号");
+                        }else{
+                            sender.sendMessage(ChatColor.RED+"设置玩家称号失败");
+                        }
+                    }else{
+                        sender.sendMessage(ChatColor.RED+"未知的参数");
+                    }
+                }else{
+                    sender.sendMessage(ChatColor.RED+"无效的称号");
+                }
             }
         }else{
             sender.sendMessage(ChatColor.RED+"未知的命令，请用"+ChatColor.GOLD+"/nametag help"+ChatColor.RED+"查看帮助");

@@ -4,7 +4,7 @@
   <groupId>org.whitepainter.wpnametag</groupId>
   <artifactId>WP-NameTag</artifactId>
   <name>WP-NameTag</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
   <build>
     <defaultGoal>clean package</defaultGoal>
     <resources>

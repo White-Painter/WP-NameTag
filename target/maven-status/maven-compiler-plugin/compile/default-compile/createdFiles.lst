@@ -1,0 +1,16 @@
+org\whitepainter\wpnametag\command\NameTagCommand.class
+org\whitepainter\wpnametag\io\instance\SQLiteIO.class
+org\whitepainter\wpnametag\NameTagMain.class
+org\whitepainter\wpnametag\io\instance\IOManager$1.class
+org\whitepainter\wpnametag\gui\GUIListener.class
+org\whitepainter\wpnametag\io\data\NameTag.class
+org\whitepainter\wpnametag\expansion\NameTagExpansion.class
+org\whitepainter\wpnametag\gui\NameTagGUI.class
+org\whitepainter\wpnametag\io\instance\IOManager.class
+org\whitepainter\wpnametag\Setting.class
+org\whitepainter\wpnametag\io\listener\IOListener.class
+org\whitepainter\wpnametag\gui\Button.class
+org\whitepainter\wpnametag\io\data\PlayerData.class
+org\whitepainter\wpnametag\NameTagManager.class
+org\whitepainter\wpnametag\gui\NameTagGUI$1.class
+org\whitepainter\wpnametag\io\instance\MySQLIO.class
