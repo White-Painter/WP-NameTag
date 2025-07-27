@@ -79,7 +79,7 @@ PlaceholderAPI集成：丰富的变量支持
 
 %wpnametag_used%	当前使用称号ID	"VIP玩家"
 
-%wpnametag_used_format%	当前称号显示名称	"VIP玩家"
+%wpnametag_used_format%	当前称号显示名称	"§6VIP玩家"
 
 %wpnametag_owned_amount%	拥有称号数量	"5"
 
